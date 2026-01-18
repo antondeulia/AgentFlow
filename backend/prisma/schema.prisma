@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Graph {
+  id String @id @default(uuid())
+
+  name String
+  description String?
+
+  @@map("graphs")
+}
+
+model Node {
+  id String @id @default(uuid())
+
+  name String
+  description String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Edge {
+  id String @id @default(uuid())
+
+  conditional Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
